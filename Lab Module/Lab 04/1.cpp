@@ -50,7 +50,8 @@ public:
         node *a = head;
         while(a!=NULL)
         {
-            cout<<a->data<<" ";\
+            cout<<a->data<<" ";
+            \
             a = a->nxt;
         }
         cout<<"\n";
@@ -69,8 +70,8 @@ public:
         int cur_index=0;
         while(cur_index != index-1)
         {
-             a = a->nxt;
-             cur_index++;
+            a = a->nxt;
+            cur_index++;
         }
         node *newnode = CreateNewNode(data);
         newnode->nxt = a->nxt;
@@ -80,6 +81,40 @@ public:
         a->nxt = newnode;
         sz++;
     }
+    //delete the given index
+    void Delete(int index)
+    {
+        if(index>=sz)
+        {
+            cout<<index<<"dose not exit"<<endl;
+            return;
+        }
+        node *a = head;
+        int cur_index=0;
+        while(cur_index != index)
+        {
+            a = a->nxt;
+            cur_index++;
+        }
+        node *b = a->prv;
+        node *c = a->nxt;
+        if(b != NULL)
+        {
+            b->nxt = c;
+        }
+        if(c != NULL)
+        {
+            c->prv = b;
+        }
+        delete a;
+        if(index==0)
+        {
+            head = c;
+        }
+        sz--;
+
+    }
+
     //returns the size of LinkedList
     int getSize()//TC=O(1)
     {
