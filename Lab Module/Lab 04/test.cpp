@@ -18,7 +18,7 @@ public:
         head=NULL;
         sz=0;
     }
-    node*CreateNewNode(int data)
+    node *CreateNewNode(int data)
     {
         node*newnode =new node;
         newnode->data=data;
