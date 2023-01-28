@@ -82,7 +82,7 @@ public:
         sz++;
     }
     //delete the given index
-    void Delete(int index)
+    void Delete(int index)//TC=O(n)
     {
         if(index>=sz)
         {
@@ -120,6 +120,29 @@ public:
     {
         return sz;
     }
+
+    //reverse the doubly linked-list
+    void Reverse()
+    {
+        if(head == NULL)
+        {
+            return;
+        }
+        node *a = head;
+        int cur_index = 0;
+        while(cur_index != sz - 1)
+        {
+            a = a->nxt;
+            cur_index++;
+        }
+        node *b = head;
+        while(b != NULL)
+        {
+            swap(b->nxt,b->prv);
+            b = b->prv;
+        }
+        head = a;
+    }
 };
 
 
@@ -138,6 +161,9 @@ int main()
     dl.Traverse();
 
     dl.Insert(2,100);
+    dl.Traverse();
+
+    dl.Reverse();
     dl.Traverse();
 
     return 0;

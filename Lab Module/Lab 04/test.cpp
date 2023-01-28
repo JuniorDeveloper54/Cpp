@@ -156,5 +156,8 @@ int main()
 
     cout<<dl.getSize()<<"\n";
 
+    dl.Reverse();
+    dl.Traverse();
+
     return 0;
 }
