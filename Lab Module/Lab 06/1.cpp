@@ -17,6 +17,22 @@ void print(list<int>l)
     cout<<endl;
 }
 
+//Inserting at any index TC O(n)
+void Insert(list<int>&l, int index, int value)
+{
+    auto it = l.begin(); //0(1)
+    advance(it , index); //moving my iterator using advance function // O(index) -> O(n)
+    l.insert(it , value);//O(1)
+}
+
+//delete at any index TC O(n)
+ void Delete(list<int>&l , int index)
+ {
+     auto it = l.begin();
+     advance(it , index);
+     l.erase(it);
+ }
+
 
 int main()
 {
@@ -43,7 +59,15 @@ int main()
     l.pop_front();
     print(l);
 
+    //insert at any position
+    Insert(l, 2, 100);
+    print(l);
 
+    //delete at any position
+    Delete(l, 2);
+    print(l);
 
+    //size
+    cout<<l.size()<<" ";
     return 0;
 }
