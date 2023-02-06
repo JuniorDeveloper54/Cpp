@@ -146,6 +146,7 @@ int main()
     }
     swap(st,tmp);
 
+    //printing top elements, after that st will be empty
     while(st.getSize() > 0)
     {
         cout<<st.top()<<" ";
