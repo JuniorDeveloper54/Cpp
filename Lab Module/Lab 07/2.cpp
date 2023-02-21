@@ -67,14 +67,78 @@ class Deque
         sz++;
     }
 
-};
+    //pop_back O(1)
+    void pop_back()
+    {
+        if(sz==1)
+        {
+            delete tail;
+            head = NULL;
+            tail = NULL;
+            sz--;
+            return;
+        }
+        if(sz == 0)
+        {
+            cout << "Deque is empty" << "\n";
+            sz--;
+            return;
+        }
+        node* a = tail;
+        tail = tail->prv;
+        delete a;
+        tail->nxt = NULL;
+        sz--;
+    }
+    //pop_front O(1)
+    void pop_front()
+    {
+        if(sz==1)
+        {
+            delete head;
+            head = NULL;
+            tail = NULL;
+            sz--;
+            return;
+        }
+        if(sz == 0)
+        {
+            cout << "Deque is empty" << "\n";
+            sz--;
+            return;
+        }
+        node* a = head;
+        head = head->nxt;
+        delete a;
+        head->prv = NULL;
+        sz--;
+    }
 
+    //front O(1)
+    int front()
+    {
+        if(sz==0)
+            cout << "Deque is empty\n";
+        return head->data;
+    }
+    //back O(1)
+    int front()
+    {
+        if(sz==0)
+            cout << "Deque is empty\n";
+        return tail->data;
+    }
+
+};
 
 
 int main()
 {
     FAST;
 
+    Deque d;
+
+    //d.............
 
 
     return 0;
