@@ -17,7 +17,5 @@ int main()
         q.push(tmp + "1");
 
     }
-
-
     return 0;
 }

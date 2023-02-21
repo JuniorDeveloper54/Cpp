@@ -1,18 +1,21 @@
 #include<bits/stdc++.h>
 using namespace std;
-
+//TC 0(n)
 int main()
 {
-    int t,p,s,r;
-    cin>>t;
-    for(int i = 1; i<=t; i++)
-    {
-        cin >> p >> s >> r;
-        if((p == s) && r>1)
-            cout << "Case " << i << ": "<< "No" << endl;
-        else
-            cout << "Case " << i << ": "<< "Yes" << endl;
-    }
+    int n;
+    cin >> n;
+    queue<string>q;
+    q.push("1");
 
+    for(int i = 1; i <= n; i++ )
+    {
+        cout << q.front() << " ";
+        string tmp = q.front();
+        q.pop();
+        q.push(tmp + "0");
+        q.push(tmp + "1");
+
+    }
     return 0;
 }
