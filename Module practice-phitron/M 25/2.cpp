@@ -48,12 +48,59 @@ public:
         tail = newnode;
     }
 
+    //dequeue operation
+    void dequeue()
+    {
+        if(sz == 0)
+        {
+            cout << "Queue is empty" << "\n";
+            return;
+        }
+        if(sz == 1)
+        {
+            delete head;
+            head = NULL;
+            tail = NULL;
+            sz--;
+            return;
+        }
+        node* a = head; // pointing a to the head
+        head = head->nxt;
+        sz--;
+        delete a;
+    }
+
+    //returning front element
+    int front()
+    {
+        if(sz == 0)
+        {
+            cout << "Queue is empty" << "\n";
+            return -1;
+        }
+        return head->data;
+    }
+
+    //returning size
+    int size()
+    {
+        return sz;
+    }
+
 };
 
 int main()
 {
+    Queue q;
 
+    q.enqueue(5);
+    q.enqueue(10);
+    q.enqueue(15);
 
+    cout << q.front() << "\n";
+    cout << q.size() << "\n";
 
+    q.dequeue();
+    cout << q.size() << "\n";
     return 0;
 }
