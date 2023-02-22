@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+//Deque with reverse operation
 class node
 {
 public:
@@ -15,12 +16,14 @@ public:
     node* head;
     node* tail;
     int sz;
+    int rev;
 
     Deque()
     {
         head = NULL;
         tail = NULL;
         sz = 0;
+        rev = 0;
     }
 
     node* CreateNewNode(int value)
@@ -32,8 +35,7 @@ public:
         return newnode;
     }
 
-    //pushback O(1)
-    void push_back(int value)
+    void InsertAtTail(int value)
     {
         node* newnode = CreateNewNode(value);
         if(sz==0)
@@ -49,8 +51,7 @@ public:
         sz++;
     }
 
-    //pushfront O(1)
-    void push_front(int value)
+    void InsertAtHead(int value)
     {
         node* newnode = CreateNewNode(value);
         if(sz==0)
@@ -65,9 +66,33 @@ public:
         head = newnode;
         sz++;
     }
+    //pushback O(1)
+    void push_back(int value)
+    {
+        if(rev == 0)
+        {
+            InsertAtTail(value);
+        }
+        else
+        {
+            InsertAtHead(value);
+        }
+    }
 
-    //popback O(1)
-    void pop_back()
+    //pushfront O(1)
+    void push_front(int value)
+    {
+        if(rev == 0)
+        {
+            InsertAtHead(value);
+        }
+        else
+        {
+            InsertAtTail(value);
+        }
+    }
+
+    void DeleteLast()
     {
         if(sz==0)
         {
@@ -88,8 +113,8 @@ public:
         tail->nxt = NULL;
         sz--;
     }
-    //popfront O(1)
-    void pop_front()
+
+    void DeleteFirst()
     {
         if(sz==0)
         {
@@ -112,6 +137,32 @@ public:
         sz--;
     }
 
+    //popback O(1)
+    void pop_back()
+    {
+        if(rev==0)
+        {
+            DeleteLast();
+        }
+        else
+        {
+            DeleteFirst();
+        }
+    }
+
+    //popfront O(1)
+    void pop_front()
+    {
+        if(rev==0)
+        {
+            DeleteFirst();
+        }
+        else
+        {
+            DeleteLast();
+        }
+    }
+
     //front O(1)
     int front()
     {
@@ -120,7 +171,14 @@ public:
             cout<<"Deque is empty\n";
             return -1;
         }
-        return head->data;
+        if(rev==0)
+        {
+            return head->data;
+        }
+        else
+        {
+            return tail->data;
+        }
     }
 
     //back O(1)
@@ -131,7 +189,27 @@ public:
             cout<<"Deque is empty\n";
             return -1;
         }
-        return tail->data;
+        if(rev==0)
+        {
+            return tail->data;
+        }
+        else
+        {
+            return head->data;
+        }
+    }
+
+    //Reverse operation O(1)
+    void reverse_deque()
+    {
+        if(rev == 0)
+        {
+            rev = 1;
+        }
+        else
+        {
+            rev = 0;
+        }
     }
 };
 
@@ -142,10 +220,8 @@ int main()
     d.push_back(5);
     d.push_back(10);
     d.push_back(15);
-
-    cout<<"Back : "<<d.back()<<" Front : "<<d.front()<<"\n";
-
     d.push_front(20);
+    d.reverse_deque();
     cout<<"Back : "<<d.back()<<" Front : "<<d.front()<<"\n";
 
     d.pop_front();
